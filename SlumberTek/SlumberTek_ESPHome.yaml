@@ -627,9 +627,11 @@ switch:
   restore_mode: RESTORE_DEFAULT_ON
   retain: false
   turn_on_action:
-  - lambda: !lambda id(mqtt_enable) = true;
+  - lambda: |-
+      id(mqtt_enable) = true;
   turn_off_action:
-  - lambda: !lambda id(mqtt_enable) = false;
+  - lambda: |-
+      id(mqtt_enable) = false;
 
 button:
 - platform: restart
