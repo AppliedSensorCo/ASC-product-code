@@ -2,6 +2,11 @@ Go to the ASC Discord channel if you have any questions about the changes - http
 
 Ver 0.3.1 (in progress)
  - Add button to upgrade firmware manually
+ - substitution at the file front?
+ - maybe set discovery to true so I can always read from it, not easy to get rid of retained if device is removed
+ - Look into disable_by_default to clean some UI elements with the option to switch them on
+ - increase auto-calibration trigger sensitivity range to 400% from 250%
+ - increase default auto-calibration triggger to maybe 125%
 
 Ver 0.3.0 (release 5/1/25)
  - Separated empty bed and full bed threshold sensitivities

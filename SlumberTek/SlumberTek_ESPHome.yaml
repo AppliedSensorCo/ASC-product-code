@@ -63,7 +63,7 @@ improv_serial:
 captive_portal:
 
 mqtt:
-  # All MQTT publishes are anonymous, all that is sent is the $name (not the friendly name)
+  # All MQTT publishes send with the $name (not the friendly name)
   # All pubs are defaultly SlumberTek-XXXXXX/number/ or SlumberTek-XXXXXX/sensor/ etc. where the XXXXXX is the last 6 digits of the ESP's MAC address
   # The  MQTT data goes to an AWS server and only ASC has creditentials to subscribe to the data.
   id: mqtt_client
