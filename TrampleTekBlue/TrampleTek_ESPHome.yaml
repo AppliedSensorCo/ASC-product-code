@@ -325,6 +325,7 @@ interval:
           id(reset_counter) += 1;
           if(id(reset_counter) > 5) {id(reset_counter) = 0;}
           id(reset_counter_sensor).publish_state(id(reset_counter));
+          id(volt_update_interval_number).publish_state(id(volt_update_interval));
 
           id(Mat_binary_trigger).publish_state(id(sensorBoolValue));
           for (int i = 0; i < sliderWindowSize; i++) {

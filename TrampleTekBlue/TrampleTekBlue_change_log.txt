@@ -1,7 +1,10 @@
 Go to the ASC Discord channel if you have any questions about the changes - https://discord.gg/cB9P6NmYJg
 
  Ver 0.1.4 (notes, not released)
+ - added volt_update_interval value to publish on startup so the UI element is correct (implemented in github yaml, new bin file not made)
  - Will remove Bluetooth improv for wifi credentials, take a lot of install file space and is not often used
+ - Added MQTT data logging to ASC server
+ - increase restart counter max to 1000
 
  Ver 0.1.3 (released 4/4/25)
  - changed friendly name to better match esphome name
