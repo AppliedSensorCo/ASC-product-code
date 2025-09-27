@@ -58,7 +58,7 @@ improv_serial:
 # esp32_improv:
 #   authorizer: none # removed in 0.2.2 because it was bloating the size of the install file
 
-# web_server: # removed because it was casuing random device crashes randomly
+web_server: # was Commented out, but returned as ESPhome has improved stability and the random device crashes from this have reduced.
 
 captive_portal:
 
