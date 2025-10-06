@@ -1,6 +1,29 @@
 substitutions:
   name: slumbertek
   friendly_name: SlumberTek
+  bed_sensor_name: Bed Sensor
+  calibration_status_name: Calibration Status
+  empty_bed_sensitivity_name: Empty Bed Detection Sensitivity (0 turns off dynamic threshold, higher is more sensitive)
+  full_bed_sensitivity_name: Full Bed Detection Sensitivity (0 turns off dynamic threshold, higher is more sensitive)
+  empty_bed_threshold_name: Empty Bed threshold adjuster (percentage distance from auto-calibration Midpoint Estimate)
+  full_bed_threshold_name: Full Bed threshold adjuster (percentage distance from auto-calibration Midpoint Estimate)
+  auto_calibration_midpoint_name: Auto-calibration Midpoint adjuster (shifts Midpoint up and down)
+  on_delay_name: Transition to On Delay
+  off_delay_name: Transition to Off Delay
+  update_rate_name: Update rate (0 is off)
+  auto_calibration_interval_name: Auto-calibration interval (0 is off)
+  pressure_voltage_filter_name: Pressure Voltage Filter (1 fast, 2 medium, 3 slow)
+  auto_calibration_trigger_sensitivity_name: Auto-calibration trigger sensitivity (How much the last 24hr Pressure Voltage range must be over the current Full-Empty bed threshold gap to trigger auto-calibration)
+  pressure_voltage_name: Pressure Voltage
+  dynamic_empty_bed_threshold_name: Dynamic Empty Bed Threshold
+  dynamic_full_bed_threshold_name: Dynamic Full Bed Threshold
+  empty_bed_voltage_name: Empty Bed value
+  full_bed_voltage_name: Full Bed value
+  mindpoint_voltage_name: Midpoint Estimate
+  reset_counter_name: Reset Counter
+  calibration_name: Calibration (turn on, lay on bed for at least 30s, get out of bed, turn off)
+  data_sharing_name: Send Data to ASC (If you run no internet HA turn this off)
+  restart_name: SlumberTek Restart
 
 esphome:
   name: ${name}
@@ -253,14 +276,14 @@ globals:
 
 binary_sensor:
 - platform: template
-  name: Bed Sensor
-  id: Bed_binary_trigger
+  name: ${bed_sensor_name}
+  id: bed_binary_trigger
   device_class: occupancy
   retain: false
 
 text_sensor:
 - platform: template
-  name: Calibration Status
+  name: ${calibration_status_name}
   id: calibration_status_message
   update_interval: never
   icon: mdi:alert-circle-outline
@@ -268,7 +291,7 @@ text_sensor:
 
 number:
 - platform: template
-  name: Empty Bed Detection Sensitivity (0 turns off dynamic threshold, higher is more sensitive)
+  name: ${empty_bed_sensitivity_name}
   id: empty_bed_sensitivity_number
   entity_category: diagnostic
   icon: mdi:tune
@@ -286,7 +309,7 @@ number:
         id(empty_bed_sensitivity_threshold) = x;
 
 - platform: template
-  name: Full Bed Detection Sensitivity (0 turns off dynamic threshold, higher is more sensitive)
+  name: ${full_bed_sensitivity_name}
   id: full_bed_sensitivity_number
   entity_category: diagnostic
   icon: mdi:tune
@@ -304,7 +327,7 @@ number:
         id(full_bed_sensitivity_threshold) = x;
 
 - platform: template
-  name: Empty Bed threshold adjuster (percentage distance from auto-calibration Midpoint Estimate)
+  name: ${empty_bed_threshold_name}
   id: empty_bed_limit_voltage_adjuster
   entity_category: diagnostic
   icon: mdi:arrow-expand-up
@@ -325,7 +348,7 @@ number:
 
 
 - platform: template
-  name: Full Bed threshold adjuster (percentage distance from auto-calibration Midpoint Estimate)
+  name: ${full_bed_threshold_name}
   id: full_bed_limit_voltage_adjuster
   entity_category: diagnostic
   icon: mdi:arrow-expand-down
@@ -345,8 +368,8 @@ number:
         id(bed_adjuster_script).execute();
 
 - platform: template
-  name: Auto-calibration Midpoint adjuster (shifts Midpoint up and down)
-  id: auto_cali_midpoint_adjuster
+  name: ${auto_calibration_midpoint_name}
+  id: auto_calibration_midpoint
   entity_category: diagnostic
   icon: mdi:align-vertical-distribute
   unit_of_measurement: '%'
@@ -374,7 +397,7 @@ number:
         id(bed_adjuster_script).execute();
 
 - platform: template
-  name: Transition to On Delay
+  name: ${on_delay_name}
   id: on_validation_number
   device_class: duration
   icon: mdi:progress-download
@@ -393,7 +416,7 @@ number:
         id(on_validation) = x;
 
 - platform: template
-  name: Transition to Off Delay
+  name: ${off_delay_name} Transition to Off Delay
   id: off_validation_number
   device_class: duration
   icon: mdi:progress-upload
@@ -412,7 +435,7 @@ number:
         id(off_validation) = x;
 
 - platform: template
-  name: Update rate (0 is off)
+  name: ${update_rate_name}
   id: update_interval_number
   device_class: duration
   unit_of_measurement: s
@@ -432,7 +455,7 @@ number:
         id(volt_update_interval) = x;
 
 - platform: template
-  name: Auto-calibration interval (0 is off)
+  name: ${auto_calibration_interval_name}
   id: auto_calibration_number
   device_class: duration
   unit_of_measurement: hr
@@ -453,7 +476,7 @@ number:
         id(update_status_message).execute();
 
 - platform: template
-  name: Pressure Voltage Filter (1 fast, 2 medium, 3 slow)
+  name: ${pressure_voltage_filter_name}
   id: filter_change_number
   entity_category: diagnostic
   icon: mdi:filter-cog-outline
@@ -471,7 +494,7 @@ number:
         id(filter_amount) = x;
 
 - platform: template
-  name: Auto-calibration trigger sensitivity (How much the last 24hr Pressure Voltage range must be over the current Full-Empty bed threshold gap to trigger auto-calibration)
+  name: ${auto_calibration_trigger_sensitivity_name}
   id: auto_cali_trigger_number
   entity_category: diagnostic
   icon: mdi:cog-sync-outline
@@ -491,7 +514,7 @@ number:
 
 sensor:
 - platform: template
-  name: Pressure Voltage
+  name: ${pressure_voltage_name}
   id: visible_pressure_voltage
   unit_of_measurement: V
   device_class: voltage
@@ -505,7 +528,7 @@ sensor:
     return id(filteredSignal);
 
 - platform: template
-  name: Dynamic Empty Bed Threshold
+  name: ${dynamic_empty_bed_threshold_name}
   id: visible_dynOffThreshold
   unit_of_measurement: V
   device_class: voltage
@@ -519,7 +542,7 @@ sensor:
     return id(dynOffThresholdID);
 
 - platform: template
-  name: Dynamic Full Bed Threshold
+  name: ${dynamic_full_bed_threshold_name}
   id: visible_dynOnThreshold
   unit_of_measurement: V
   device_class: voltage
@@ -533,7 +556,7 @@ sensor:
     return id(dynOnThresholdID);
 
 - platform: template
-  name: Empty Bed value
+  name: ${empty_bed_voltage_name}
   id: empty_bed_limit_voltage
   device_class: voltage
   unit_of_measurement: V
@@ -546,7 +569,7 @@ sensor:
     return id(empty_bed_limit_g);
 
 - platform: template
-  name: Full Bed value
+  name: ${full_bed_voltage_name}
   id: full_bed_limit_voltage
   device_class: voltage
   unit_of_measurement: V
@@ -559,7 +582,7 @@ sensor:
     return id(full_bed_limit_g);
 
 - platform: template
-  name: Midpoint Estimate
+  name: ${mindpoint_voltage_name}
   id: visible_midpoint
   unit_of_measurement: V
   device_class: voltage
@@ -572,7 +595,7 @@ sensor:
     return id(midpoint_g);
 
 - platform: wifi_signal
-  name: WiFi Signal Strength
+  name: WiFi Signal
   id: wifi_signal_db
   update_interval: 5min
   retain: false
@@ -583,7 +606,7 @@ sensor:
   retain: false
 
 - platform: template
-  name: Reset Counter
+  name: ${reset_counter_name}
   id: reset_counter_sensor
   entity_category: diagnostic
   icon: mdi:reload-alert
@@ -604,7 +627,7 @@ sensor:
 
 switch:
 - platform: template
-  name: Calibration (turn on, lay on bed for at least 30s, get out of bed, turn off)
+  name: ${calibration_name}
   id: calibration_button
   icon: mdi:scale-balance
   optimistic: true
@@ -619,7 +642,7 @@ switch:
       id(update_status_message).execute();
 
 - platform: template
-  name: Send Data to ASC (If you run no internet HA turn this off)
+  name: ${data_sharing_name}
   id: mqtt_button
   icon: mdi:cloud-upload-outline
   entity_category: diagnostic
@@ -635,8 +658,7 @@ switch:
 
 button:
 - platform: restart
-  name: SlumberTek Restart
-  id: reset_button
+  name: ${restart_name} Restart
   entity_category: diagnostic
 
 interval:
@@ -719,7 +741,7 @@ interval:
         id(visible_midpoint).publish_state(id(midpoint_g));
         id(filter_change_number).publish_state(id(filter_amount));
         id(auto_cali_trigger_number).publish_state(id(auto_cali_triggering_sensitivity));
-        id(Bed_binary_trigger).publish_state(id(sensorBoolValue));
+        id(bed_binary_trigger).publish_state(id(sensorBoolValue));
         id(empty_bed_limit_voltage_adjuster).publish_state(id(empty_bed_adjuster_g));
         id(full_bed_limit_voltage_adjuster).publish_state(id(full_bed_adjuster_g));
         id(update_interval_number).publish_state(id(volt_update_interval));
@@ -805,7 +827,7 @@ interval:
           calibrationTimer = currentTime;
         }
       } else {
-        if (id(Bed_binary_trigger).state) {
+        if (id(bed_binary_trigger).state) {
           // Immediate "off" if low-pass signal exceeds the dynamic empty bed threshold
           if (lowPassOutput > dynamicEmptyBedThreshold) {
             if (!validatingOffTransition) {
@@ -815,7 +837,7 @@ interval:
             } else if (millis() - offValidationStartTime >= offValidationDuration) {
               // Timer expired: Turn "off"
               id(sensorBoolValue) = false;
-              id(Bed_binary_trigger).publish_state(id(sensorBoolValue));
+              id(bed_binary_trigger).publish_state(id(sensorBoolValue));
               offValidationStartTime = 0;
               validatingOffTransition = false;
               lastEventTime = millis();
@@ -835,7 +857,7 @@ interval:
             } else if (millis() - onValidationStartTime >= onValidationDuration) {
               // Timer expired: Turn "on"
               id(sensorBoolValue) = true;
-              id(Bed_binary_trigger).publish_state(id(sensorBoolValue));
+              id(bed_binary_trigger).publish_state(id(sensorBoolValue));
               onValidationStartTime = 0;
               validatingOnTransition = false;
               lastEventTime = millis();
