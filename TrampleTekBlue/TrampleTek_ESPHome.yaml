@@ -65,15 +65,12 @@ wifi:
     ssid: "TTBlue Fallback Hotspot"
 
 
-
-
-
 #### Step 9. Enables wifi credentials over USB, if you need it
 improv_serial:
 
-#### Step 10. Enables wifi credentials over Bluetooth, if you need it
-esp32_improv:
-  authorizer: none
+#### Step 10. Enables wifi credentials over Bluetooth, if you need it. Removed because it was causing the file size to be too big
+# esp32_improv:
+#   authorizer: none
 
 #### Step 11. Enables you to "visit" the device and see stats
 # web_server: // removed because it was causing periodic disconnects for some people

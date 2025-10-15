@@ -63,8 +63,8 @@ dashboard_import:
 
 improv_serial:
 
-esp32_improv:
-  authorizer: none
+# esp32_improv: // for giving wifi creds over BLE, removed because it was causing program file to be too big
+#   authorizer: none
 
 # web_server: // removed because it was causing periodic disconnects for some people
 
