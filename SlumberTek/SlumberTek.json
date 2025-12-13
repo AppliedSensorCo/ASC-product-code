@@ -1,6 +1,6 @@
 {
   "name": "SlumberTek Firmware",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "home_assistant_domain": "esphome",
   "new_install_skip_erase": false,
   "builds": [
@@ -8,8 +8,8 @@
       "chipFamily": "ESP32-C3",
       "ota": {
         "path": "https://raw.githubusercontent.com/AppliedSensorCo/ASC-product-code/main/SlumberTek/slumbertek.ota.bin",
-        "md5": "7e4cfaaddfcc17b2622a10970fa92d3c",
-        "summary": "Quick overview video for 0.3.0 (https://youtu.be/00eSYyqT7IA), you may need to re-calibrate your device. Fixed a big mistake in the auto-calibration, added more UI to control auto-cal. You can now rollback to 0.2.3 at docs.asc.com.",
+        "md5": "5a2e440e85351e9ae0eff72e1618493b",
+        "summary": "Keeping up to date with latest ESPHome updates. Added 'SlumberTek firmware check' button. Implemented feedback to increased default 'Auto-calibration trigger sensitivity' from 75% to 125%, and maximum value up to 400%",
         "release_url": "https://github.com/AppliedSensorCo/ASC-product-code/blob/main/SlumberTek/SlumberTek_change_log.txt"        
       },
       "parts": [

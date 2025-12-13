@@ -8,7 +8,7 @@ esphome:
   name_add_mac_suffix: true
   project:
     name: AppliedSensorCo.SlumberTek
-    version: 0.3.0
+    version: 0.3.1
 
 esp32:
   board: esp32-c3-devkitm-1
@@ -214,7 +214,7 @@ globals:
 - id: auto_cali_triggering_sensitivity
   type: int
   restore_value: yes
-  initial_value: '75'
+  initial_value: '125'
 
 - id: midpoint_g
   type: float
@@ -638,6 +638,13 @@ button:
   name: SlumberTek Restart
   id: reset_button
   entity_category: diagnostic
+
+- platform: template
+  name: "SlumberTek firmware check"
+  id: check_firmware_updates
+  entity_category: diagnostic
+  on_press:
+    - component.update: update_http_request
 
 interval:
 - interval: 50ms

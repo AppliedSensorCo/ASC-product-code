@@ -8,7 +8,7 @@ esphome:
   name_add_mac_suffix: true
   project:
     name: AppliedSensorCo.SlumberTek
-    version: 0.3.0
+    version: 0.3.1
 
 esp32:
   board: esp32-c3-devkitm-1
@@ -43,8 +43,8 @@ http_request:
 wifi:
   output_power: 8.5dB #!!!!!!!! MAKE SURE TO HAVE THIS LINE!!!!! It's known issue with Wemos Lolin c3 mini's
   reboot_timeout: 10s
-  # ssid: !secret wifi_ssid # These are not part of the tt-sleep.factory.bin or tt-sleep.ota.bin, these are only added when you "take control" of the device
-  # password: !secret wifi_password # These are not part of the tt-sleep.factory.bin or tt-sleep.ota.bin, these are only added when you "take control" of the device
+  ssid: !secret wifi_ssid # These are not part of the tt-sleep.factory.bin or tt-sleep.ota.bin, these are only added when you "take control" of the device
+  password: !secret wifi_password # These are not part of the tt-sleep.factory.bin or tt-sleep.ota.bin, these are only added when you "take control" of the device
   ap:
     ssid: SlumberTek Fallback Hotspot
 
@@ -58,12 +58,12 @@ improv_serial:
 # esp32_improv:
 #   authorizer: none # removed in 0.2.2 because it was bloating the size of the install file
 
-# web_server: # removed because it was casuing random device crashes randomly
+web_server: # was Commented out, but returned as ESPhome has improved stability and the random device crashes from this have reduced.
 
 captive_portal:
 
 mqtt:
-  # All MQTT publishes are anonymous, all that is sent is the $name (not the friendly name)
+  # All MQTT publishes send with the $name (not the friendly name)
   # All pubs are defaultly SlumberTek-XXXXXX/number/ or SlumberTek-XXXXXX/sensor/ etc. where the XXXXXX is the last 6 digits of the ESP's MAC address
   # The  MQTT data goes to an AWS server and only ASC has creditentials to subscribe to the data.
   id: mqtt_client
@@ -214,7 +214,7 @@ globals:
 - id: auto_cali_triggering_sensitivity
   type: int
   restore_value: yes
-  initial_value: '75'
+  initial_value: '125'
 
 - id: midpoint_g
   type: float
@@ -477,9 +477,9 @@ number:
   icon: mdi:cog-sync-outline
   unit_of_measurement: '%'
   update_interval: never
-  initial_value: 75
+  initial_value: 125
   min_value: 50
-  max_value: 250
+  max_value: 400
   step: 25
   optimistic: true
   restore_value: true
@@ -627,15 +627,24 @@ switch:
   restore_mode: RESTORE_DEFAULT_ON
   retain: false
   turn_on_action:
-  - lambda: !lambda id(mqtt_enable) = true;
+  - lambda: |-
+      id(mqtt_enable) = true;
   turn_off_action:
-  - lambda: !lambda id(mqtt_enable) = false;
+  - lambda: |-
+      id(mqtt_enable) = false;
 
 button:
 - platform: restart
   name: SlumberTek Restart
   id: reset_button
   entity_category: diagnostic
+
+- platform: template
+  name: "Check for firmware updates"
+  id: check_firmware_updates
+  entity_category: diagnostic
+  on_press:
+    - component.update: update_http_request
 
 interval:
 - interval: 50ms
