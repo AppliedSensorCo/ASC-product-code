@@ -1,6 +1,6 @@
 {
   "name": "TrampleTek Blue Firmware",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "home_assistant_domain": "esphome",
   "new_install_skip_erase": false,
   "builds": [
@@ -8,8 +8,8 @@
       "chipFamily": "ESP32-C3",
       "ota": {
         "path": "https://raw.githubusercontent.com/AppliedSensorCo/ASC-product-code/main/TrampleTekBlue/ttblue.ota.bin",
-        "md5": "cc69c01401dc087c2e2f7765e25a9966",
-        "summary": "Updated friendly name to match ESPHome name, increased Sensitivity max to 2.0, removed web_server to reduce random disconnects, added calibration button instructions, and updated GitHub repo location.",
+        "md5": "d5f83f3faae287c03e0a5e618e439e99",
+        "summary": "Keeping up to date with latest ESPHome updates. Added 'TrampleTek firmware check' & 'TrampleTek Restart' buttons. Removed Bluetooth improv for wifi credentials, compile was getting too big :/. Minor code tweaks.",
         "release_url": "https://github.com/AppliedSensorCo/ASC-product-code/blob/main/TrampleTekBlue/TrampleTekBlue_change_log.txt"                
       },
       "parts": [
