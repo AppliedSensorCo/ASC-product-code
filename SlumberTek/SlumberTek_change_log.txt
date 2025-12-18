@@ -5,6 +5,7 @@ Ver 0.3.2 (ideas - in progress)
  - substitution at the file front?
  - maybe set discovery to true so it can always read from it, not easy to get rid of retained if device is removed
  - Look into disable_by_default to clean some UI elements with the option to switch them on
+ - add a minimum calibration gap, like 0.05V to keep from run away calibrations
 
 Ver 0.3.1 (release 12/13/25)
  - Updated to lastest ESPHome Builder version 2025.11.5

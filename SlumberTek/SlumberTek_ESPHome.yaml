@@ -477,9 +477,9 @@ number:
   icon: mdi:cog-sync-outline
   unit_of_measurement: '%'
   update_interval: never
-  initial_value: 75
+  initial_value: 125
   min_value: 50
-  max_value: 250
+  max_value: 400
   step: 25
   optimistic: true
   restore_value: true
