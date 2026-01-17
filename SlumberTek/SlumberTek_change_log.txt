@@ -1,6 +1,7 @@
 Go to the ASC Discord channel if you have any questions about the changes - https://discord.gg/cB9P6NmYJg
 
 Ver 0.3.2 (ideas - in progress)
+ - Add occupancy requirement of 1-2 hours as a requirement for auto-calibrations
  - Full slumberTek name and mac address sent to MQTT?
  - substitution at the file front?
  - maybe set discovery to true so it can always read from it, not easy to get rid of retained if device is removed
