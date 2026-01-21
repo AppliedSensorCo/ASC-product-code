@@ -8,6 +8,10 @@ Ver 0.3.2 (ideas - in progress)
  - Look into disable_by_default to clean some UI elements with the option to switch them on
  - add a minimum calibration gap, like 0.05V to keep from run away calibrations
 
+Ver 0.3.1 (Hotfix - 1/21/26)
+ - ESPHome changed the max length of characters for Entities down to 120
+ - "Auto-calibration trigger sensitivity" name had to be shortened to: Auto-calibration trigger sensitivity (Higher requires larger in-out of bed voltage changes to trigger auto-calibration)
+
 Ver 0.3.1 (release 12/13/25)
  - Updated to lastest ESPHome Builder version 2025.11.5
  - Add button to manually check for firmware updates

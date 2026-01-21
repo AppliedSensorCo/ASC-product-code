@@ -471,7 +471,7 @@ number:
         id(filter_amount) = x;
 
 - platform: template
-  name: Auto-calibration trigger sensitivity (How much the last 24hr Pressure Voltage range must be over the current Full-Empty bed threshold gap to trigger auto-calibration)
+  name: Auto-calibration trigger sensitivity (Higher requires larger in-out of bed voltage changes to trigger auto-calibration)
   id: auto_cali_trigger_number
   entity_category: diagnostic
   icon: mdi:cog-sync-outline
