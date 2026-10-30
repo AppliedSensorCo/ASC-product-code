@@ -260,7 +260,9 @@ sensor:
 
 switch:
   - platform: template
-    name: "Calibration (place your mat, turn on calibration, put your desired load on mat, turn off calibration - auto adjusts Sensitivity for you)"
+    # Calibration (place your mat, turn on calibration, put your desired load on mat,
+    # turn off calibration - auto adjusts Sensitivity for you)
+    name: "Calibration"
     id: calibration_button
     optimistic: true
 
